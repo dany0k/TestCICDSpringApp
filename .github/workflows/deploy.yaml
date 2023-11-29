@@ -69,9 +69,10 @@ jobs:
             git clone https://github.com/dany0k/TestCICDSpringApp
             cd ./TestCICDSpringApp
             mvn -Dmaven.skip.test=true package
-            docker container stop $(docker container ls -q) 
-            docker rm $(docker ps -a -q) 
-            docker rmi $(docker images -q)
+            docker rm $(docker stop $(docker ps -a -q --filter ancestor=zmamz/first-module --format="{{.ID}}"))
+            docker rm $(docker stop $(docker ps -a -q --filter ancestor=zmamz/second-module --format="{{.ID}}"))
+            docker image rm zmamz/first-module 
+            docker image rm zmamz/second-module 
             docker compose up -d
             cd ..
             rm -r ./TestCICDSpringApp
