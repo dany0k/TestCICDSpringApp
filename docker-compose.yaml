@@ -22,7 +22,7 @@ services:
       - /var/lib/postgresql/data
 
   first-module:
-    image: zmamz/first-module
+    image: zmamz/first-module:latest
     build:
       dockerfile: Dockerfile
       context: FirstModule
@@ -39,7 +39,7 @@ services:
         condition: service_started
 
   second-module:
-    image: zmamz/second-module
+    image: zmamz/second-module:latest
     build:
       dockerfile: Dockerfile
       context: SecondModule
